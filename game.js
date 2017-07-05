@@ -1,6 +1,6 @@
   var frames = [
       [1, 2],
-      [0, 10],
+      [6, 4],
       [5, 4],
       [10, 0],
       [7, 2],
@@ -14,14 +14,55 @@
   var runningTotal = 0
 
   for (var i = 0; i < frames.length; i++) { /*Go through frames array */
-      var scores = frames[i] /*scores is whatever frames array index you're up to ie. frames[0] = [1,2] */
-      for (var j = 0; j < scores.length; j++) { /*go through the array i.e frame[0] */
+      if (frames[i][0] === 10 || frames[i][1] === 10) {
+          if (frames[i][0] === 10) {
+              if (frames[i + 1][0] === 10) {
+                  frameTotal[i] = frames[i][0] + frames[i + 1][0] + frames[i + 2][0]
+              } else {
+                  frameTotal[i] = frames[i][0] + frames[i + 1][0] + frames[i + 1][1]
+              }
+          } else {
+              frameTotal[i] = frames[i][1] + frames[i + 1][0]
+          }
+      } else {
+          var sum = frames[i][0] + frames[i][1]
 
-
-
+          if (sum === 10) {
+              frameTotal[i] = frames[i][0] + frames[i][1] + frames[i + 1][0]
+          } else {
+              frameTotal[i] = frames[i][0] + frames[i][1]
+          }
       }
   }
-  console.log(frameTotal)
+  for (var j = 0; j < frameTotal.length; j++) {
+      runningTotal += frameTotal[j]
+  }
+  console.log(runningTotal)
+
+
+  //       for (var j = 0; j < scores.length; j++) { /*go through the array i.e frame[0] */
+  //           if (scores[j] === 10) {
+  //               if (scores[0] === 10) {
+  //                   console.log("Strike!")
+  //               }
+  //               if (scores[1] === 10) {
+  //                   console.log("Spare!")
+  //               }
+  //           } else {
+  //               var valA = scores[0]
+  //               var valB = scores[1]
+  //               var sum = valA + valB
+
+  //               if (sum === 10) {
+  //                   console.log("Spare!")
+  //               } else {
+  //                   console.log("Just add them together dolt!")
+  //               }
+  //           }
+
+  //       }
+  //   }
+  //   console.log(frameTotal)
 
 
 
